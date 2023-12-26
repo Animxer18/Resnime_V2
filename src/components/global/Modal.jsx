@@ -32,7 +32,9 @@ const Modal = ({
       <ModalOverlay />
       <ModalContent>
         {header && <ModalHeader>{header}</ModalHeader>}
-        {showCancelButton && <ModalCloseButton />}
+        {showCancelButton && (
+          <ModalCloseButton fontSize={20} mt={18} mr={2} zIndex={999} />
+        )}
         <ModalBody>{children}</ModalBody>
         {footer && <ModalFooter>{footer}</ModalFooter>}
       </ModalContent>
