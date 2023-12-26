@@ -1,7 +1,8 @@
-import { Input, Select as SelectChakra } from "@chakra-ui/react";
+import { Input, Select as SelectChakra, Stack } from "@chakra-ui/react";
 import useResponsive from "../../hooks/useResponsive";
 import Drawer from "./Drawer";
-import { Fragment, useState } from "react";
+import { useState } from "react";
+import Box from "./Box";
 
 /**
  * @typedef {Object} ArrListOptions
@@ -44,32 +45,38 @@ const Select = ({ listOptions, placeholder = "Select One", ...props }) => {
             header: <>{placeholder}</>,
           })}
         >
-          <SelectChakra
-            multiple
-            placeholder={placeholder}
-            {...props}
-            height={300}
-            onChange={(e) => {
-              if (props?.onChange) {
-                props?.onChange(e);
-              }
-              setOpenDrawer(false);
-              setValueSelected(e?.target?.value);
-            }}
-            icon={<Fragment />}
-          >
+          <Stack>
             {listOptions?.map((opt, idx) => (
-              <option style={{ padding: 10 }} key={idx} value={opt?.value}>
+              <Box
+                key={idx}
+                py={5}
+                px={2}
+                onClick={() => {
+                  if (props?.onChange) {
+                    props?.onChange(opt?.value);
+                  }
+                  setOpenDrawer(false);
+                  setValueSelected(opt?.value);
+                }}
+              >
                 {opt?.label}
-              </option>
+              </Box>
             ))}
-          </SelectChakra>
+          </Stack>
         </Drawer>
       </>
     );
   }
   return (
-    <SelectChakra placeholder={placeholder} {...props}>
+    <SelectChakra
+      placeholder={placeholder}
+      {...props}
+      onChange={({ target: { value } }) => {
+        if (props.onChange) {
+          props.onChange(value);
+        }
+      }}
+    >
       {listOptions?.map((opt, idx) => (
         <option key={idx} value={opt?.value}>
           {opt?.label}

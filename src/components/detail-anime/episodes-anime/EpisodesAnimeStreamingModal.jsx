@@ -32,7 +32,7 @@ const EpisodesAnimeStreamingModal = () => {
   }, [dataStream]);
 
   const changeQualityHandler = useCallback(
-    ({ target: { value } }) => {
+    (value) => {
       videoHLS({
         refCurrent: videoRef?.current,
         srcVideo: value,
