@@ -8,6 +8,7 @@ import {
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import { SearchIcon } from "@chakra-ui/icons";
+import Image from "./Image";
 
 const Layout = ({ children }) => {
   const [search, setSearch] = useState("");
@@ -27,7 +28,6 @@ const Layout = ({ children }) => {
         top={0}
         zIndex={99}
         bgColor="var(--chakra-colors-chakra-body-bg)"
-        p={5}
       >
         <Stack direction="row" spacing={5} alignItems="center">
           <Box
@@ -36,7 +36,7 @@ const Layout = ({ children }) => {
               navigate("/");
             }}
           >
-            R
+            <Image src="/icon.png" boxSize={20} />
           </Box>
           <Box style={{ width: "100%" }}>
             <InputGroup>
