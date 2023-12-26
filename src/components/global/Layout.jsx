@@ -9,14 +9,11 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import { SearchIcon } from "@chakra-ui/icons";
 import Image from "./Image";
-import useResponsive from "../../hooks/useResponsive";
 
 const Layout = ({ children }) => {
   const [search, setSearch] = useState("");
   const [searchParam, setSearchParam] = useSearchParams();
   const navigate = useNavigate();
-
-  const { sm } = useResponsive();
 
   const searchHandler = () => {
     searchParam?.set("q", search);
@@ -28,7 +25,7 @@ const Layout = ({ children }) => {
     <Stack direction="column" spacing={1}>
       <Box
         position="sticky"
-        top={sm ? 2 : 0}
+        top={0}
         zIndex={99}
         bgColor="var(--chakra-colors-chakra-body-bg)"
       >
@@ -61,7 +58,7 @@ const Layout = ({ children }) => {
           </Box>
         </Stack>
       </Box>
-      <Box>{children}</Box>
+      <Box className="content">{children}</Box>
     </Stack>
   );
 };
