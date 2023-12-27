@@ -7,14 +7,20 @@ import theme from "./theme.js";
 import Layout from "./components/global/Layout.jsx";
 import "./style/main.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import ErrorBoundary from "./components/global/ErrorBoundary.jsx";
+import FallbackErr from "./pages/FallbackErr.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       <BrowserRouter>
-        <Layout>
-          <App />
-        </Layout>
+        <ErrorBoundary fallback={<FallbackErr isNavbar />}>
+          <Layout>
+            <ErrorBoundary fallback={<FallbackErr />}>
+              <App />
+            </ErrorBoundary>
+          </Layout>
+        </ErrorBoundary>
       </BrowserRouter>
     </ChakraProvider>
   </React.StrictMode>
