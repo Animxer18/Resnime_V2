@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Carousel } from "react-responsive-carousel";
 import useResponsive from "../../hooks/useResponsive";
-import { Heading, SimpleGrid, Stack, Text } from "@chakra-ui/react";
+import { Heading, SimpleGrid, Stack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import BgImage from "./BgImage";
 
