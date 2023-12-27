@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Image as ImageChakra } from "@chakra-ui/react";
 import PlaceholderImage from "../../assets/placeholder.png";
 
@@ -10,6 +10,13 @@ import PlaceholderImage from "../../assets/placeholder.png";
 const Image = ({ src, ...props }) => {
   const [load, setLoad] = useState(false);
 
+  useEffect(() => {
+    return () => {
+      if (load) {
+        setLoad(false);
+      }
+    };
+  }, [load]);
   return (
     <>
       <ImageChakra
