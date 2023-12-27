@@ -1,4 +1,4 @@
-import { Button, IconButton, SimpleGrid, Stack, Text } from "@chakra-ui/react";
+import { IconButton, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useFetchData from "../../hooks/useFetchData";
@@ -8,6 +8,8 @@ import { ArrowForwardIcon } from "@chakra-ui/icons";
 import HomeIcon from "../../assets/custom-icons/HomeIcon";
 import CardAnime from "./card-anime/CardAnime";
 import useResponsive from "../../hooks/useResponsive";
+import ErrorPage from "../global/ErrorPage";
+import imageError from "../../assets/image_error.png";
 
 const ListAnime = ({ titlePage, path, useExploreMore = false }) => {
   const { sm } = useResponsive();
@@ -56,9 +58,17 @@ const ListAnime = ({ titlePage, path, useExploreMore = false }) => {
         </Text>
       </Stack>
       {error ? (
-        <>
-          Error : {error} <Button onClick={() => refetch()}>Refresh</Button>
-        </>
+        <ErrorPage
+          btnAction={{
+            onClick: () => {
+              refetch();
+            },
+            text: "Refresh",
+          }}
+          title="Erorr"
+          subTitle={error}
+          src={imageError}
+        />
       ) : (
         <>
           {loading ? (
